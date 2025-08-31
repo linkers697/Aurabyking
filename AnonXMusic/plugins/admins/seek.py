@@ -5,6 +5,7 @@ from AnonXMusic import YouTube, app
 from AnonXMusic.core.call import Anony
 from AnonXMusic.misc import db
 from AnonXMusic.utils import AdminRightsCheck, seconds_to_min
+from AnonXMusic.utils.decorators.admins import ActualAdminCB
 from AnonXMusic.utils.inline import close_markup
 from AnonXMusic.utils.inline.play import stream_markup_timer
 from config import BANNED_USERS
@@ -78,10 +79,11 @@ async def seek_comm(cli, message: Message, _, chat_id):
 
 # Inline button callback handlers for seek functionality
 @app.on_callback_query(filters.regex("seek") & ~BANNED_USERS)
-@AdminRightsCheck
-async def seek_callback(cli, callback_query: CallbackQuery, _, chat_id):
+@ActualAdminCB
+async def seek_callback(cli, callback_query: CallbackQuery, _):
     """Handle seek button callbacks"""
     callback_data = callback_query.data
+    chat_id = callback_query.message.chat.id
     
     try:
         # Parse callback data: "seek chat_id seconds" or "seekback chat_id seconds"
@@ -102,10 +104,11 @@ async def seek_callback(cli, callback_query: CallbackQuery, _, chat_id):
 
 
 @app.on_callback_query(filters.regex("seekback") & ~BANNED_USERS)
-@AdminRightsCheck
-async def seekback_callback(cli, callback_query: CallbackQuery, _, chat_id):
+@ActualAdminCB
+async def seekback_callback(cli, callback_query: CallbackQuery, _):
     """Handle seekback button callbacks"""
     callback_data = callback_query.data
+    chat_id = callback_query.message.chat.id
     
     try:
         # Parse callback data: "seekback chat_id seconds"
@@ -196,24 +199,28 @@ async def handle_seek_inline(callback_query: CallbackQuery, chat_id: int, second
 
 # Additional callback handlers for specific seek amounts (if needed)
 @app.on_callback_query(filters.regex("ADMIN Seek10") & ~BANNED_USERS)
-@AdminRightsCheck
-async def seek_10_forward(cli, callback_query: CallbackQuery, _, chat_id):
+@ActualAdminCB
+async def seek_10_forward(cli, callback_query: CallbackQuery, _):
+    chat_id = callback_query.message.chat.id
     await handle_seek_inline(callback_query, chat_id, 10, False, _)
 
 
 @app.on_callback_query(filters.regex("ADMIN Seek20") & ~BANNED_USERS)
-@AdminRightsCheck  
-async def seek_20_forward(cli, callback_query: CallbackQuery, _, chat_id):
+@ActualAdminCB
+async def seek_20_forward(cli, callback_query: CallbackQuery, _):
+    chat_id = callback_query.message.chat.id
     await handle_seek_inline(callback_query, chat_id, 20, False, _)
 
 
 @app.on_callback_query(filters.regex("ADMIN SeekBack10") & ~BANNED_USERS)
-@AdminRightsCheck
-async def seek_10_backward(cli, callback_query: CallbackQuery, _, chat_id):
+@ActualAdminCB
+async def seek_10_backward(cli, callback_query: CallbackQuery, _):
+    chat_id = callback_query.message.chat.id
     await handle_seek_inline(callback_query, chat_id, 10, True, _)
 
 
 @app.on_callback_query(filters.regex("ADMIN SeekBack20") & ~BANNED_USERS)
-@AdminRightsCheck
-async def seek_20_backward(cli, callback_query: CallbackQuery, _, chat_id):
+@ActualAdminCB
+async def seek_20_backward(cli, callback_query: CallbackQuery, _):
+    chat_id = callback_query.message.chat.id
     await handle_seek_inline(callback_query, chat_id, 20, True, _)
