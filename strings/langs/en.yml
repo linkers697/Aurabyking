@@ -180,8 +180,8 @@ stream_1: "<blockquote expandable><b>▣ Shraddha Streaming</b>\n\n▣ Title: <a
 stream_2: "<blockquote expandable><b>▣ Shraddha Streaming</b>\n\n▣ Title: <a href={0}>{1}</a>\n▣ Duration: {2} minutes\n▣ Requested By: {3}</blockquote>"
 
 
-CLOSE_BUTTON  : "𝑪𝒍𝒐𝒔𝒆"
-BACK_BUTTON : "𝑩𝒂𝒄𝒌"
+CLOSE_BUTTON  : "ᴄʟᴏꜱᴇ"
+BACK_BUTTON : "ʙᴀᴄᴋ"
 
 PL_B_1 : "𝗠𝗲𝗻𝘂"
 S_B_1 : "Add Me In Your Group"
