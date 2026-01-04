@@ -10,9 +10,10 @@ load_dotenv()
 API_ID = int(getenv("API_ID"))
 API_HASH = getenv("API_HASH")
 
+API_URL = getenv("API_URL", 'https://api.nexgenbots.xyz') #youtube song url
+VIDEO_API_URL = getenv("VIDEO_API_URL", 'https://api2.nexgenbots.xyz')
+API_KEY = getenv("API_KEY", 'NxGBNexGenBotsda64ea') # youtube song api key, generate free key or buy paid plan from panel.thequickearn.xyz
 
-YTPROXY_URL = getenv("YTPROXY_URL", 'https://tgapi.xbitcode.com') ## E.G https://yt.okflix.
-YT_API_KEY = getenv("YT_API_KEY", "Api Key here")#+&&_
 
 # Get your token from @BotFather on Telegram.
 BOT_TOKEN = getenv("BOT_TOKEN")
